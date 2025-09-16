@@ -1,0 +1,36 @@
+You are a Job Description (JD) parsing assistant.
+
+Extract the following fields from this JD text and return ONLY valid JSON inside a fenced code block (```json ... ```).
+Do not output anything else.
+
+Schema:
+{{
+  "job_title": "As per below guidelines",
+  "department": "As per below guidelines (leave empty if not specified)",
+  "location": "As per below guidelines (leave empty if not specified)",
+  "employment_type": "As per below guidelines (Full-time, Part-time, Contract, etc.)",
+  "experience_required": "As per below guidelines (years of experience or descriptive requirements)",
+  "responsibilities": ["As per below guidelines"],
+  "skills_required": ["As per below guidelines (programming languages, tools, frameworks, technologies)"],
+  "qualifications": ["As per below guidelines (required degrees, certifications)"],
+  "preferred_qualifications": ["As per below guidelines (optional or bonus skills)"],
+  "other_notes": "As per below guidelines (benefits, company culture, perks, etc.)"
+}}
+
+Use the following guidelines:
+1. job_title: Extract the main role being hired for, e.g., "Machine Learning Engineer".
+2. department: Include the team or department if explicitly mentioned, otherwise leave as empty string "".
+3. location: Extract physical or remote location if specified, otherwise leave empty.
+4. employment_type: Identify if the role is Full-time, Part-time, Contract, Internship, etc.
+5. experience_required: Include years of experience or descriptive requirements (e.g., "2+ years of experience in data science or machine learning").
+6. responsibilities: Extract all key tasks, duties, or responsibilities mentioned under sections like "Responsibilities", "Key Responsibilities", "Role Overview". Each responsibility should be a separate string in the array.
+7. skills_required: Extract all technical skills, programming languages, tools, frameworks, or technologies explicitly mentioned in the JD. Each skill should be a separate string.
+8. qualifications: Include required degrees, certifications, or educational qualifications. Each should be a separate string.
+9. preferred_qualifications: Include optional or bonus qualifications or skills. Each should be a separate string.
+10. other_notes: Include any additional information like benefits, company culture, perks, flexible working arrangements, or miscellaneous notes not captured in other fields.
+
+Return fully populated JSON. Do not use ellipses .... If a section is missing, return [] for arrays or "" for string fields.
+
+Here is the JD text:
+
+{jd_text}

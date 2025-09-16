@@ -18,7 +18,7 @@ class CVParser:
         self.utility_usage = utility
         logging.info("Warming up LLM...")
         _ = self.llm_qwen.invoke("Hello")  # Pre-load model
-        logging.info("LLM is ready!")
+        logging.success("LLM is ready!")
 
         # Load prompt template once
         prompt_path = os.path.abspath(
@@ -41,7 +41,7 @@ class CVParser:
 
         done_flag = [False]
         spinner_thread = threading.Thread(
-            target=self.utility_usage._spinner, args=(done_flag,), daemon=True
+            target=self.utility_usage.spinner, args=(done_flag,), daemon=True
         )
         spinner_thread.start()
         logging.info("Sending request to LLM...")
@@ -59,7 +59,7 @@ class CVParser:
 
         cv_json = self.utility_usage.clean_text_into_json(llm_output)
         if cv_json:
-            logging.info("CV parsing complete!")
+            logging.success("CV parsing complete!")
         else:
             logging.warning("Failed to parse CV JSON output.")
         return cv_json

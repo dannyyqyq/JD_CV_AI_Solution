@@ -49,7 +49,7 @@ class utils_functions:
             prompt = f.read()
         return prompt.replace("{prompt_text}", prompt_text)
 
-    def _spinner(self, done_flag):
+    def spinner(self, done_flag):
         """Simple CLI spinner while LLM is running."""
         while not done_flag[0]:
             for cursor in "|/-\\":
