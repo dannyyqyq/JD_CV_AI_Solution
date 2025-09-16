@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "../..")))
 
 class CVParser:
     def __init__(
-        self, llm_model="qwen3:latest", temperature=0, utility=utils_functions()
+        self, llm_model="qwen3:latest", temperature=0.4, utility=utils_functions()
     ):
         self.llm_model = llm_model
         self.temperature = temperature
@@ -18,7 +18,7 @@ class CVParser:
         self.utility_usage = utility
         logging.info("Warming up LLM...")
         _ = self.llm_qwen.invoke("Hello")  # Pre-load model
-        logging.success("LLM is ready!")
+        logging.info("LLM is ready!")
 
         # Load prompt template once
         prompt_path = os.path.abspath(
@@ -59,7 +59,7 @@ class CVParser:
 
         cv_json = self.utility_usage.clean_text_into_json(llm_output)
         if cv_json:
-            logging.success("CV parsing complete!")
+            logging.info("CV parsing complete!")
         else:
             logging.warning("Failed to parse CV JSON output.")
         return cv_json
