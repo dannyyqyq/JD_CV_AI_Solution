@@ -1,0 +1,52 @@
+You are a CV parsing assistant.
+
+Extract the following fields from this CV text and return ONLY valid JSON inside a fenced code block (```json ... ```).
+Do not output anything else.
+Do not come out with your own information, all the information must only be extracted from the source itself.
+
+Schema:
+{{
+  "summary": "As per below guidelines",
+  "education": [
+    {{
+      "institution": "As per below guidelines",
+      "degree": "As per below guidelines",
+      "start_date": "mm/yyyy or yyyy",
+      "end_date": "mm/yyyy or yyyy"
+    }}
+  ],
+  "experience": [
+    {{
+      "job_title": "As per below guidelines",
+      "company": "As per below guidelines",
+      "start_date": "mm/yyyy or yyyy or yyyy/mm",
+      "end_date": "mm/yyyy or yyyy or yyyy/mm",
+      "description": "As per below guidelines"
+    }}
+  ],
+  "skills": ["As per below guidelines"],
+  "projects": [
+    {{
+      "project_title": "As per below guidelines",
+      "description": "As per below guidelines"
+    }}
+  ]
+}}
+
+Use the following guidelines:
+
+1. "summary": include text corresponding to ["summary", "profile", "professional summary", "about me"]
+2. "education": include text corresponding to ["education", "academic", "certification", "degrees"]
+3. "experience": include text corresponding to ["experience", "work history", "employment", "career", "professional experience"]
+  - If a role is freelance/self-employed
+  - output the entire title in "job_title"
+  - leave "company" as an empty string ""
+  - otherwise "company" should always have a input
+4. "skills": return full set of skills which includes text corresponding to ["skills", "technologies", "technical skills", "competencies", "tools", "Tools & Technologies", ...]
+5. "projects": return full set of projects if any which includes text corresponding to ["projects", "project", "portfolio"]
+
+Return fully populated JSON. Do not use ellipses `...`. If a section is missing, return [] or "".
+
+Here is the CV text:
+
+{cv_text}

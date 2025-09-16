@@ -1,5 +1,6 @@
 import re
 import json
+import time
 
 
 class utils_functions:
@@ -47,3 +48,11 @@ class utils_functions:
         with open(file_path, "r", encoding="utf-8") as f:
             prompt = f.read()
         return prompt.replace("{prompt_text}", prompt_text)
+
+    def _spinner(self, done_flag):
+        """Simple CLI spinner while LLM is running."""
+        while not done_flag[0]:
+            for cursor in "|/-\\":
+                print(f"\rProcessing {cursor}", end="", flush=True)
+                time.sleep(0.1)
+        print("\r", end="")  # Clear line when done
