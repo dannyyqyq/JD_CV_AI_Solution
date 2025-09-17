@@ -11,7 +11,7 @@ This project allows users to:
   - Matched and missing skills
   - Gap analysis and recommendations
 
-The project uses **Ollama LLM locally** for parsing and comparison, and a **Streamlit web interface** for easy user interaction.
+The project uses **Ollama LLM locally** : **qwen3-latest** for parsing and comparison, and a **Streamlit web interface** for easy user interaction.
 
 ---
 ```
@@ -43,6 +43,7 @@ CV_Agent/
 │       ├── cd_vs_jd_prompt.txt
 │       ├── cv_prompt.txt
 │       └── jd_prompt.txt
+│
 ├── main.py                           # Script used for testing
 ├── app.py                            # Main streamlit app POC
 ├── requirements_app.txt              # Minimal Python dependencies
