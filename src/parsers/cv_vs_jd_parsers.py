@@ -14,10 +14,6 @@ class CVvsJDParser:
         self.llm = OllamaLLM(model=self.llm_model, temperature=self.temperature)
         self.utility_usage = utility
 
-        logging.info("Warming up LLM...")
-        _ = self.llm.invoke("Hello")  # Pre-load model
-        logging.info("LLM is ready!")
-
         # Load prompt template
         prompt_path = os.path.abspath(
             os.path.join(

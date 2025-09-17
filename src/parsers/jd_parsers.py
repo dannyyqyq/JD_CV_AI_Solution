@@ -14,10 +14,6 @@ class JDParser:
         self.llm_qwen = OllamaLLM(model=self.llm_model, temperature=self.temperature)
         self.utility_usage = utility
 
-        logging.info("Warming up LLM...")
-        _ = self.llm_qwen.invoke("Hello")  # Pre-load model
-        logging.info("LLM is ready!")
-
         # Load JD prompt template
         prompt_path = os.path.abspath(
             os.path.join(os.path.dirname(__file__), "../prompt_templates/jd_prompt.txt")

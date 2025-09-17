@@ -32,9 +32,7 @@ def cv_jd_comparison(industry="Technology"):  # For now; later can come from UI 
         )
 
         if comparison_json:
-            logging.info("CV vs JD comparison complete!")
-            # Pretty print results
-            pprint.pprint(comparison_json)
+            pprint.pprint(comparison_json)  # Pretty print results
         else:
             logging.error("CV vs JD comparison failed!")
     except Exception as e:
