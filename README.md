@@ -14,33 +14,37 @@ This project allows users to:
 The project uses **Ollama LLM locally** for parsing and comparison, and a **Streamlit web interface** for easy user interaction.
 
 ---
-
-## Folder Structure
+```
+Folder Structure
 
 CV_Agent/
 │
 ├── data/
-│   ├── MLE_CV_2025.pdf          # Sample CV for testing
-│   ├── jd_sample.txt            # Sample JD for testing
-│   ├── cv_test.json             # Saved CV JSON for testing
-│   └── jd_test.json             # Saved JD JSON for testing
+│   ├── CV_2025.pdf
+│   ├── jd_sample.txt
+│   ├── cv_test.json
+│   └── jd_test.json
 │
-├── prompt_templates/
-│   ├── cv_prompt.txt            # CV parsing prompt template
-│   └── jd_prompt.txt            # JD parsing prompt template
+├── notebook/
+│   ├── 1. PDF_ingestion.ipynb
+│   ├── 2. JD_CV_LLM_Parsing.ipynb
+│   └── 3. CV_JD_Engine.ipynb
 │
 ├── src/
-│   ├── app.py                   # Streamlit app
-│   ├── logger.py                # Logging setup
-│   ├── llm.py                   # LLM wrapper (Ollama / OpenAI)
-│   ├── utils/
-│   │   └── utils_functions.py   # Utility functions (JSON parsing, spinner, etc.)
 │   ├── document_ingestion/
-│   │   └── pdf_processor.py     # PDF extraction
-│   └── parsers/
-│       ├── cv_parsers.py        # CV parser
-│       ├── jd_parsers.py        # JD parser
-│       └── cv_vs_jd_parsers.py  # Comparison parser
-│
-├── requirements_app.txt         # Minimal Python dependencies
-└── README.md                    # Project documentation
+│   │   └── pdf_processor.py
+│   ├── parsers/
+│   │   ├── cv_parsers.py
+│   │   ├── jd_parsers.py
+│   │   └── cv_vs_jd_parsers.py
+│   ├── utils_functions.py
+│   ├── logger.py
+│   └── prompt_templates/
+│       ├── cd_vs_jd_prompt.txt
+│       ├── cv_prompt.txt
+│       └── jd_prompt.txt
+├── main.py                           # Script used for testing
+├── app.py                            # Main streamlit app POC
+├── requirements_app.txt              # Minimal Python dependencies
+├── requirements.txt                  # Full dependencies including using for notebooks experiments
+└── README.md                         # Project documentation
