@@ -12,7 +12,7 @@ This project allows users to:
   - Matched and missing skills
   - Gap analysis and recommendations
 
-The project uses Ollama LLM locally (qwen3-latest) for parsing and comparison, with a Streamlit web interface for easy user interaction.
+The project uses Ollama LLM locally `qwen3-latest` for parsing and comparison, with a Streamlit web interface for easy user interaction.
 
 ## 🚀 Features
 
@@ -65,7 +65,7 @@ CV_Agent/
 
 ### Prerequisites
 
-- Python 3.11 or higher
+- Python 3.13
 - [Ollama](https://ollama.ai/) installed and running
 - qwen3-latest model downloaded via Ollama
 
@@ -95,10 +95,24 @@ git clone https://github.com/dannyyqyq/JD_CV_AI_Solution.git
 cd JD_CV_AI_Solution
 ```
 
+### Step 4: Create and Activate a Virtual Environment
+
+```bash
+# Create virtual environment using Python 3.13
+python -m venv .venv
+
+# Activate it
+# Mac/Linux
+source .venv/bin/activate
+
+# Windows
+.venv\Scripts\activate
+```
+
 ### Step 4: Install Python Dependencies
 
 ```bash
-# For running the Streamlit app only
+# For running the Streamlit app only (RECOMMENDED)
 pip install -r requirements_app.txt
 
 # For full development including notebooks
@@ -112,6 +126,7 @@ pip install -r requirements.txt
 1. Start Ollama service:
 ```bash
 ollama serve
+# Or open Ollama application in the background alternatively
 ```
 
 2. Run the Streamlit app:
@@ -167,11 +182,11 @@ The system generates structured JSON outputs:
 ### CV Parsing Output
 ```json
 {
-  "personal_info": {...},
+  "summary": {...},
   "skills": [...],
   "experience": [...],
   "education": [...],
-  "certifications": [...]
+  "projects": [...]
 }
 ```
 
@@ -195,6 +210,24 @@ The system generates structured JSON outputs:
   "gap_analysis": {...}
 }
 ```
+
+## Challenges
+
+1. **LLM JSON PARSING**
+     - Test several open source models, which qwen3-latest seems to be the best at picking up all the important fields output as JSON
+     - Chunking not really required within this use-case, CVs can be too small mostly for any chunkig required(typically 1-2 pages)
+     - Initially considered using regex for extraction, but CVs come in vastly different shapes and formats, making regex brittle and hard to generalize. LLM parsing proved more robust.
+
+2. **Prompt Engineering**
+     - Getting consistent results from the LLM required iterative prompt tuning.
+     - Externalized all prompts into prompt_templates/ for easier updates and testing.
+3. **User Feedback During Long Processing**
+     - Parsing CVs and JDs with an LLM takes noticeable time.
+     - Added spinners (st.spinner in Streamlit, threading spinner in CLI) to improve user experience.
+4. **Dockerization Complexity**
+     - Running Ollama inside Docker added challenges (GPU passthrough, model downloads, container networking).
+     - Final decision: keep Ollama installed locally for development instead of forcing full containerization.
+
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
