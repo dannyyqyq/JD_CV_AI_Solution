@@ -2,6 +2,10 @@
 
 Using AI to extract, compare CV across JDs - An intelligent system for CV-Job Description matching and analysis.
 
+## 🎥 Demo Video
+Check out the following video to see the JD_CV_AI_Solution in action:
+[Watch the demo](https://www.youtube.com/watch?v=xdSZUT344V0)
+
 ## 🎯 Overview
 
 This project allows users to:
